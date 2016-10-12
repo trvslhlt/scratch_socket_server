@@ -15,17 +15,11 @@ print('Serving HTTP on port %s... ' % PORT)
 while True:
     client_connection, client_address = listen_socket.accept()
     request = client_connection.recv(1024)
-    print(str(type(request)))
     print(request)
     print('')
     http_request = HTTPRequest(request)
     print('method:', http_request.method)
     print('')
-    http_response = """\
-HTTP/1.1 200 OK
-
-<H1>Hello, World!</H1>
-"""
     client_connection.sendall(request)
-    client_connection.sendall(str(type(request)).encode('utf-8'))
     client_connection.close()
+
