@@ -2,7 +2,7 @@
 
 import socket
 from httprequest import HTTPRequest
-
+from timecontroller import getUnixTime 
 
 HOST, PORT = '', 5000
 
@@ -20,6 +20,7 @@ while True:
     http_request = HTTPRequest(request)
     print('method:', http_request.method)
     print('')
+    client_connection.sendall(getUnixTime().encode('utf-8'))
     client_connection.sendall(request)
     client_connection.close()
 
